@@ -22,7 +22,7 @@ public class ProcessorTest {
         assertEquals(new BigDecimal(7), results.getSum());
         assertEquals(new BigDecimal(3), results.getDifference());
         assertEquals(new BigDecimal(10), results.getProduct());
-        assertEquals(new BigDecimal(2.5), results.getQuotient());
+        assertEquals(new BigDecimal("2.5"), results.getQuotient());
     }
 
     @Test
