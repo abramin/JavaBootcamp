@@ -6,12 +6,17 @@ import java.util.Optional;
 public class Result {
     private final Status status;
     private final String statusMessage;
-    private Optional<BigDecimal> value = Optional.empty();
+    private BigDecimal value;
 
-    public Result(Status status, String statusMessage, Optional<BigDecimal> value) {
+    public Result(Status status, String statusMessage, BigDecimal value) {
         this.status = status;
         this.statusMessage = statusMessage;
         this.value = value;
+    }
+
+    public Result(Status status, String statusMessage) {
+        this.status = status;
+        this.statusMessage = statusMessage;
     }
 
     public Status getStatus() {
@@ -23,6 +28,6 @@ public class Result {
     }
 
     public BigDecimal getValue() {
-        return value.orElse(null);
+        return value;
     }
 }

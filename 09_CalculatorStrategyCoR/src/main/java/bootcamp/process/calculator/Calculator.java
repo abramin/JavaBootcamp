@@ -1,5 +1,6 @@
 package bootcamp.process.calculator;
 
+import bootcamp.data.OperatorConstants;
 import bootcamp.data.Params;
 import bootcamp.data.Result;
 import bootcamp.data.Status;
@@ -17,11 +18,11 @@ public class Calculator {
     private final ElementFactory factory = new AdderFactory(
             new SubtractorFactory(
                     new DividerFactory(
-                            new MultiplierFactory("x"),
-                            "/"
-                    ), "-"
+                            new MultiplierFactory(OperatorConstants.TIMES),
+                            OperatorConstants.DIVIDE_BY
+                    ), OperatorConstants.MINUS
             ),
-            "+"
+            OperatorConstants.PLUS
     );
 
     public Result calculate(final Params params) {
@@ -29,17 +30,16 @@ public class Calculator {
         if (optionalProcessingElement.isEmpty()) {
             return new Result(
                     Status.INVALID_OPERATION,
-                    "Invalid operator used",
-                    Optional.empty()
+                    "Invalid operator used"
             );
         }
 
         ProcessingElement processor = optionalProcessingElement.get();
         try {
             BigDecimal sum = processor.process(params.getX(), params.getY());
-            return new Result(Status.SUCCESS, "", Optional.of(sum));
+            return new Result(Status.SUCCESS, "", sum);
         } catch (ArithmeticException e) {
-            return new Result(Status.ARITHMETIC_ERROR, e.getMessage(), Optional.empty());
+            return new Result(Status.ARITHMETIC_ERROR, e.getMessage());
         }
     }
 }

@@ -1,5 +1,6 @@
 package bootcamp.calculator;
 
+import bootcamp.data.OperatorConstants;
 import bootcamp.data.Params;
 import bootcamp.data.Result;
 import bootcamp.data.Status;
@@ -17,7 +18,7 @@ public class CalculatorTest {
     public void shouldAddTwoParams() {
         final Params params = new Params(new BigDecimal("3.2"),
                 new BigDecimal("1.8"),
-                "+");
+                OperatorConstants.PLUS);
 
         final Result result = new Calculator().calculate(params);
 
@@ -30,7 +31,7 @@ public class CalculatorTest {
     public void shouldSubtractTwoParams() {
         final Params params = new Params(new BigDecimal("3.2"),
                 new BigDecimal("0.2"),
-                "-");
+                OperatorConstants.MINUS);
 
         final Result result = new Calculator().calculate(params);
 
@@ -43,7 +44,7 @@ public class CalculatorTest {
     public void shouldMutiplyTwoParams() {
         final Params params = new Params(new BigDecimal("2.25"),
                 new BigDecimal(2),
-                "x");
+                OperatorConstants.TIMES);
 
         final Result result = new Calculator().calculate(params);
 
@@ -56,7 +57,7 @@ public class CalculatorTest {
     public void shouldDivideTwoParams() {
         final Params params = new Params(new BigDecimal("3.2"),
                 new BigDecimal("0.4"),
-                "/");
+                OperatorConstants.DIVIDE_BY);
 
         final Result result = new Calculator().calculate(params);
 
@@ -69,7 +70,7 @@ public class CalculatorTest {
     public void shouldReturnErrorStatusDividingByZero() {
         final Params params = new Params(new BigDecimal("3.2"),
                 new BigDecimal(0),
-                "/");
+                OperatorConstants.DIVIDE_BY);
         Calculator calculator = new Calculator();
 
         final Result result = new Calculator().calculate(params);
